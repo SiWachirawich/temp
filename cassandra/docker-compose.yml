@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  cassandra:
+    image: cassandra:3.11
+    container_name: mangle-cassandradb
+    ports:
+      - "9042:9042"
+      - "7000:7000"
+      - "7001:7001"
+    environment:
+      CASSANDRA_BROADCAST_ADDRESS: ${CASSANDRA_BROADCAST_ADDRESS}
+      CASSANDRA_SEEDS: ${CASSANDRA_SEEDS}
+      CASSANDRA_CLUSTER_NAME: ${CASSANDRA_CLUSTER_NAME}
+      CASSANDRA_ENDPOINT_SNITCH: ${CASSANDRA_ENDPOINT_SNITCH}
+      CASSANDRA_DC: ${CASSANDRA_DC}
+      CASSANDRA_RACK: ${CASSANDRA_RACK}
+    volumes:
+      -  "/cassandra/storage/:/var/lib/cassandra"

@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  cassandra:
+    image: mangleuser/mangle_vcenter_adapter:3.5
+    container_name: mangle-vc-adapter
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "7001:7001"
+    volumes:
+      -  "/var/opt/mangle-vc-adapter-tomcat/logs:/var/opt/mangle-vc-adapter-tomcat/logs"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"

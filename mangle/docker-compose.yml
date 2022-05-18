@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  mangle:
+    image: mangleuser/mangle:3.5.0
+    container_name: mangle
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "5701:5701"
+    environment:
+      DB_OPTIONS: "-DcassandraContactPoints=${CASSANDRA_HOST} -DcassandraSslEnabled=false"
+      CLUSTER_OPTIONS: "-DclusterValidationToken=mangle -DpublicAddress=${HOST}"
+      # CLUSTER_OPTIONS: "-DclusterValidationToken=mangle -DpublicAddress=${HOST} -DclusterMembers=${CLUSTER_MEMBERS} -DdeploymentMode=CLUSTER"
+    volumes:
+      - "/var/opt/mangle-tomcat-dir/logs:/home/mangle/var/opt/mangle-tomcat/logs" 
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"

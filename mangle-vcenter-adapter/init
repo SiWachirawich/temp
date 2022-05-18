@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p /var/opt/mangle-vc-adapter-tomcat/logs
+chown 1000:1000 /var/opt/mangle-vc-adapter-tomcat/logs
